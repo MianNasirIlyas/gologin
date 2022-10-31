@@ -50,7 +50,7 @@ class GoLogin {
     }
     this.tmpdir = os.tmpdir();
     this.autoUpdateBrowser = !!options.autoUpdateBrowser;
-    this.browserChecker = new BrowserChecker(options.skipOrbitaHashChecking);
+    this.browserChecker = new BrowserChecker(options.skipOrbitaHashChecking,options.broswerPath);
     this.uploadCookiesToServer = options.uploadCookiesToServer || false;
     this.writeCookesFromServer = options.writeCookesFromServer;
     this.remote_debugging_port = options.remote_debugging_port || 0;
