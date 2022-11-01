@@ -1,5 +1,5 @@
 const { open } = require('sqlite');
-const sqlite3 = require('sqlite3');
+const sqlite3 = {};
 
 const MAX_SQLITE_VARIABLES = 76;
 
