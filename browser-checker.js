@@ -44,7 +44,7 @@ class BrowserChecker {
   constructor(skipOrbitaHashChecking,homeDir) {
     this.#skipOrbitaHashChecking = skipOrbitaHashChecking;
     
-    this.#homedir = homeDir.replace(/(\s+)/g, '\\$1');
+    this.#homedir = homeDir;
     this.#browserPath = path.join(this.#homedir, '.gologin', 'browser');
 
     let executableFilePath = path.join(this.#browserPath, 'orbita-browser', 'chrome');
