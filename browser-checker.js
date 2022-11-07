@@ -4,7 +4,7 @@ const os = require('os');
 const path = require('path');
 const https = require('https');
 const { access, mkdir, readdir, rmdir, unlink, copyFile, readlink, symlink, lstat } = require('fs').promises;
-const exec = util.promisify(require('child_process').exec);
+const execAsync = util.promisify(require('child_process').exec);
 const decompress = require('decompress');
 const decompressUnzip = require('decompress-unzip');
 const ProgressBar = require('progress');
@@ -34,7 +34,7 @@ const WIN_HASHFILE_LINK = `https://orbita-browser-windows-wc.gologin.com/${WIN_H
 
 const FAIL_SUM_MATCH_MESSAGE = 'hash_sum_not_matched';
 const EXTRACTED_FOLDER = 'extracted-browser';
-
+const exec = async (cmd)=> {   return await execAsync(PLATFORM === 'darwin' ? cmd.replace(/Application Support/g,"Application\\ Support"): cmd) }
 class BrowserChecker {
   #homedir;
   #browserPath;
@@ -274,6 +274,11 @@ class BrowserChecker {
       files.forEach((filename) => {
         if (filename.match(/.*\.dylib$/)) {
           promises.push(copyFile(path.join(this.#browserPath, EXTRACTED_FOLDER, filename), path.join(this.#browserPath, filename)));
+        } else if(filename== "Orbita-Browser.app") {
+          promises.push(this.copyDir(
+            path.join(this.#browserPath, EXTRACTED_FOLDER, filename),
+            path.join(this.#browserPath, filename)
+          ));
         }
       });
 
