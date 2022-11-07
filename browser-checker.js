@@ -34,7 +34,7 @@ const WIN_HASHFILE_LINK = `https://orbita-browser-windows-wc.gologin.com/${WIN_H
 
 const FAIL_SUM_MATCH_MESSAGE = 'hash_sum_not_matched';
 const EXTRACTED_FOLDER = 'extracted-browser';
-const exec = async (cmd)=> {   return await execAsync(PLATFORM === 'darwin' ? cmd.replace(/Application Support/g,"Application\\ Support"): cmd) }
+const exec = async (cmd)=> {   return await execAsync(PLATFORM === 'darwin' ? cmd.replace(/Application Support/g,"Application\\ Support").replace(/Knox Proxy/g,"Knox\\ Proxy"): cmd) }
 class BrowserChecker {
   #homedir;
   #browserPath;
