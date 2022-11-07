@@ -17,7 +17,7 @@ const https = require('https');
 
 const BrowserChecker = require('./browser-checker');
 const { BrowserUserDataManager } = require('./browser-user-data-manager');
-const { CookiesManager } = require('./cookies-manager');
+//const { CookiesManager } = require('./cookies-manager');
 const fontsCollection = require('./fonts');
 const ExtensionsManager = require('./extensions-manager');
 
@@ -1183,29 +1183,29 @@ class GoLogin {
     const resultCookies = cookies.map((el) => ({ ...el, value: Buffer.from(el.value) }));
 
     let db;
-    try {
-      db = await CookiesManager.getDB(this.cookiesFilePath, false);
-      const chunckInsertValues = CookiesManager.getChunckedInsertValues(resultCookies);
+//     try {
+//       db = await CookiesManager.getDB(this.cookiesFilePath, false);
+//       const chunckInsertValues = CookiesManager.getChunckedInsertValues(resultCookies);
 
-      for (const [query, queryParams] of chunckInsertValues) {
-        const insertStmt = await db.prepare(query);
-        await insertStmt.run(queryParams);
-        await insertStmt.finalize();
-      }
-    } catch (error) {
-      console.log(error.message);
-    } finally {
-      await db && db.close();
-    }
+//       for (const [query, queryParams] of chunckInsertValues) {
+//         const insertStmt = await db.prepare(query);
+//         await insertStmt.run(queryParams);
+//         await insertStmt.finalize();
+//       }
+//     } catch (error) {
+//       console.log(error.message);
+//     } finally {
+//       await db && db.close();
+//     }
   }
 
   async uploadProfileCookiesToServer() {
-    const cookies = await CookiesManager.loadCookiesFromFile(this.cookiesFilePath);
-    if (!cookies.length) {
-      return;
-    }
-
-    return this.postCookies(this.profile_id, cookies);
+//     const cookies = await CookiesManager.loadCookiesFromFile(this.cookiesFilePath);
+//     if (!cookies.length) {
+//       return;
+//     }
+return
+//     return this.postCookies(this.profile_id, cookies);
   }
 
   async start() {
